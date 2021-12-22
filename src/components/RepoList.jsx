@@ -8,7 +8,6 @@ import Divider from "@mui/material/Divider";
 import ListItemText from "@mui/material/ListItemText";
 import TextField from "@mui/material/TextField";
 import CircularProgress from "@mui/material/CircularProgress";
-import axios from "axios";
 
 function RepoList({
   value,
@@ -27,21 +26,6 @@ function RepoList({
 }) {
 
     
-
-//Get Filters
-useEffect(() => {
-    const getFavorites = async () => {
-      try {
-        const res = await axios.get("http://localhost:5000/favorites");
-        setFavorites(res.data);
-        setFavoritesSaved(res.data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    getFavorites();
-  }, []);
-
 
 
   //Sort

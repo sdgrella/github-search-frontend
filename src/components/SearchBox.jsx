@@ -13,7 +13,7 @@ function SearchBox({setSearch, setLoading, setOrgRepos, search, setOrgReposSaved
     
             const res = await fetch(
               // https://cors-everywhere.herokuapp.com/
-              "http://localhost:5000/search_org",
+              "http://githubsearchbackend-env.eba-kztnienv.us-east-2.elasticbeanstalk.com/search_org",
               {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },

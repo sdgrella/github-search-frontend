@@ -35,7 +35,7 @@ function App() {
   useEffect(() => {
     const getFavorites = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/favorites");
+        const res = await axios.get("http://githubsearchbackend-env.eba-kztnienv.us-east-2.elasticbeanstalk.com/favorites");
         setFavorites(res.data);
         setFavoritesSaved(res.data);
       } catch (error) {
