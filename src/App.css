@@ -23,17 +23,17 @@ body {
 
 @font-face {
   font-family: 'Alliance Bold';
-  src: local('Alliance-No-1-Bold'), url(/fonts/Alliance-No-1-Bold.woff2) format('woff2'),
+  src: local('Alliance-No-1-Bold'), url(https://master.d2i0b6dn0nq3vh.amplifyapp.com/fonts/Alliance-No-1-Bold.woff2) format('woff2'),
 
 }
 @font-face {
   font-family: 'Alliance Extra Bold';
-  src: local('Alliance-No-1-ExtraBold'), url(/fonts/Alliance-No-1-ExtraBold.woff2) format('woff2');
+  src: local('Alliance-No-1-ExtraBold'), url(https://master.d2i0b6dn0nq3vh.amplifyapp.com/fonts/Alliance-No-1-ExtraBold.woff2) format('woff2');
 
 }
 @font-face {
   font-family: 'Alliance Regular';
-  src: local('Alliance-No-1-Regular'), url(/fonts/Alliance-No-1-Regular.woff2) format('woff2');
+  src: local('Alliance-No-1-Regular'), url(https://master.d2i0b6dn0nq3vh.amplifyapp.com/fonts/Alliance-No-1-Regular.woff2) format('woff2');
 }
 
 .header-title {
