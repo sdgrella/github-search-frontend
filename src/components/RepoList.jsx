@@ -22,12 +22,8 @@ function RepoList({
   setFavorites,
   filter,
   setFavoritesSaved,
-  handleOpen
+  handleOpen,
 }) {
-
-    
-
-
   //Sort
   function sortAsc(a, b) {
     if (a.name < b.name) {
