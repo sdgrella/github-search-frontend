@@ -1,152 +1,145 @@
 import "./App.css";
-import TextField from "@mui/material/TextField";
-import Button from "@mui/material/Button";
-import { useState, useEffect } from "react";
-import Box from "@mui/material/Box";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemIcon from "@mui/material/ListItemIcon";
-import Divider from "@mui/material/Divider";
-import ListItemText from "@mui/material/ListItemText";
-import BottomNavigation from "@mui/material/BottomNavigation";
-import BottomNavigationAction from "@mui/material/BottomNavigationAction";
-import SearchIcon from "@mui/icons-material/Search";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import { DataGrid } from "@mui/x-data-grid";
-import Modal from "@mui/material/Modal";
 
-const style = {
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  width: 400,
-  bgcolor: "background.paper",
-  borderRadius: 5,
-  boxShadow: 24,
-  p: 4,
-};
+import { useState, useEffect } from "react";
+
+import Navigation from "./components/Navigation";
+
+import axios from "axios";
+
+import Header from "./components/Header";
+import SearchBox from "./components/SearchBox";
+import RepoList from "./components/RepoList";
+import Popup from "./components/Popup";
 
 function App() {
-  const [orgRepos, setOrgRepos] = useState();
-  const [search, setSearch] = useState();
+  const [orgRepos, setOrgRepos] = useState([]);
+  const [orgReposSaved, setOrgReposSaved] = useState([]);
+  const [search, setSearch] = useState([]);
   const [value, setValue] = useState(0);
 
   const [selectedRepo, setSelectedRepo] = useState();
+  const [comment, setComment] = useState();
+
+  const [repoToSave, setRepoToSave] = useState();
+
+  const [favorites, setFavorites] = useState();
+  const [favoritesSaved, setFavoritesSaved] = useState();
+
+  const [loading, setLoading] = useState();
+
+  const [filter, setFilter] = useState();
 
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
-
-  const handleSearch = () => {
-    const getOrgRepos = async () => {
-      try {
-        // setIsLoading(true);
-        const body = { search: search };
-        const res = await fetch(
-          // https://cors-everywhere.herokuapp.com/
-          "http://localhost:5000/search_org",
-          {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(body),
-          }
-        );
-        const jsonData = await res.json();
-        await setOrgRepos(jsonData.data);
-        await setValue(0);
-        // console.log(bounds);
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    getOrgRepos();
-  };
 
   useEffect(() => {
-    console.log(orgRepos);
-  }, [orgRepos]);
+    const getFavorites = async () => {
+      try {
+        const res = await axios.get("http://localhost:5000/favorites");
+        setFavorites(res.data);
+        setFavoritesSaved(res.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getFavorites();
+  }, []);
+
+  useEffect(() => {
+    console.log("favorites: ", favorites);
+    console.log("favoritesSaved: ", favoritesSaved);
+  }, [favorites, favoritesSaved]);
+
+  useEffect(() => {
+    console.log(filter);
+  }, [filter]);
+
+  useEffect(() => {
+    console.log("orgRepos", orgRepos);
+    console.log("orgReposSaved", orgReposSaved);
+  }, [orgRepos, orgReposSaved]);
+
+  useEffect(() => {
+    if (selectedRepo) {
+      setRepoToSave({
+        name: selectedRepo.name,
+        id: selectedRepo.id,
+        login: selectedRepo.login,
+        watchers: selectedRepo.watchers,
+        avatar: selectedRepo.avatar,
+        language: selectedRepo.language,
+        url: selectedRepo.url,
+        date: selectedRepo.date,
+        license: selectedRepo.license,
+        comment: comment,
+      });
+    }
+  }, [comment]);
+
+  useEffect(() => {
+    setRepoToSave(selectedRepo);
+  }, [selectedRepo]);
+
+  useEffect(() => {
+    console.log(repoToSave);
+  }, [repoToSave]);
 
   return (
     <div className="App">
-      <h1 className="header-title">Github Repository Search</h1>
-      <h4 className="header-subtitle">
-        Search the name of an organization to recieve a list of their
-        respositories.
-      </h4>
-      <div className="search-box">
-        <TextField
-          id="outlined-basic"
-          label="Organization Name"
-          variant="outlined"
-          onChange={(e) => {
-            setSearch(e.target.value);
-          }}
-          onKeyPress={(e) => {
-            if (e.key === "Enter") {
-              handleSearch();
-            }
-          }}
-        />{" "}
-        <Button type="submit" variant="contained" onClick={handleSearch}>
-          Search
-        </Button>
-      </div>
+      <Header />
 
-      <BottomNavigation
-        showLabels
+      <SearchBox
+        setSearch={setSearch}
+        setLoading={setLoading}
+        setOrgRepos={setOrgRepos}
+        search={search}
+        setOrgReposSaved={setOrgReposSaved}
+        setValue={setValue}
+        setFilter={setFilter}
+        setFavorites={setFavorites}
+      />
+
+      <Navigation
         value={value}
-        onChange={(event, newValue) => {
-          setValue(newValue);
-          console.log(newValue);
-        }}
-      >
-        <BottomNavigationAction label="Search Results" icon={<SearchIcon />} />
-        <BottomNavigationAction label="Favorites" icon={<FavoriteIcon />} />
-      </BottomNavigation>
+        setValue={setValue}
+        setFilter={setFilter}
+        setFavorites={setFavorites}
+        favoritesSaved={favoritesSaved}
+        setOrgRepos={setOrgRepos}
+        orgReposSaved={orgReposSaved}
+      />
 
-      <nav aria-label="secondary mailbox folders">
-        <List>
-          {orgRepos &&
-            orgRepos.map((repo) => {
-              return (
-                <>
-                  <Divider />
-                  <ListItem
-                    disablePadding
-                    onClick={() => {
-                      handleOpen();
-                      setSelectedRepo({
-                        name: repo.name,
-                        id: repo.id,
-                        login: repo.owner.login,
-                      });
-                    }}
-                  >
-                    <ListItemButton>
-                      <ListItemText primary={repo.name} />
-                    </ListItemButton>
-                  </ListItem>
-                  <Divider />
-                </>
-              );
-            })}
-        </List>
-      </nav>
+      <RepoList
+        value={value}
+        orgReposSaved={orgReposSaved}
+        orgRepos={orgRepos}
+        setOrgRepos={setOrgRepos}
+        favoritesSaved={favoritesSaved}
+        filter={filter}
+        setFilter={setFilter}
+        loading={loading}
+        setFavorites={setFavorites}
+        setSelectedRepo={setSelectedRepo}
+        favorites={favorites}
+        handleOpen={handleOpen}
+      />
 
-      <Modal open={open} onClose={handleClose}>
-        <Box sx={style}>
-          {selectedRepo && (
-            <>
-              <h1>{selectedRepo.login}</h1>
-              {selectedRepo.name}
-              <p></p>
-              {selectedRepo.id}
-            </>
-          )}
-        </Box>
-      </Modal>
+      <Popup
+        open={open}
+        setOpen={setOpen}
+        setComment={setComment}
+        value={value}
+        selectedRepo={selectedRepo}
+        setSelectedRepo={setSelectedRepo}
+        setRepoToSave={setRepoToSave}
+        setFavorites={setFavorites}
+        setFavoritesSaved={setFavoritesSaved}
+        setValue={setValue}
+        setFilter={setFilter}
+        favoritesSaved={favoritesSaved}
+        favorites={favorites}
+        repoToSave={repoToSave}
+      />
     </div>
   );
 }

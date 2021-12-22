@@ -1,3 +1,7 @@
+body {
+  font-family: 'Alliance Regular';
+}
+
 .App {
   text-align: center;
 }
@@ -42,4 +46,115 @@
   font-size: medium;
   margin-bottom: 30px;
   margin-top: -30px;
+}
+
+.repo-list {
+  width: 30%;
+  margin: auto;
+}
+
+.selected-repo {
+  display: flex;
+  flex-direction: column;
+}
+
+.no-saved-favorites{
+  margin-top:40px;
+}
+
+.avatar {
+  height: 10%;
+  width: 10%;
+  border-radius: 50%;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.organization-name-modal {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  
+}
+
+.organization-name-login-modal {
+  display: flex;
+  flex-direction: column;
+  margin-left: 10px;
+}
+
+.modal-repo-name {
+  font-size: large;
+  font-weight:bolder;
+  font-family: 'Alliance Extra Bold';
+}
+
+
+.modal-login-name {
+
+ font-weight: bolder;
+}
+
+
+.modal-info {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+}
+.modal-info-item {
+  display: flex;
+  flex-direction: row;
+}
+.modal-info-title {
+display: flex;
+font-weight: 900;
+margin-right: 10px;
+}
+
+.modal-repo-link {
+  text-decoration:solid;
+  color: #0080ff;
+}
+
+.modal-repo-link:hover {
+  font-weight: bolder;
+}
+
+.notes {
+  border-width: 1px;
+  border-color: rgb(146, 146, 146);
+}
+
+.note-box {
+  margin-top:30px;
+}
+
+
+.notes-title 
+{
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.note-input {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Spinner */
+
+.loading{
+  margin-top:40px;
+}
+
+
+.sort-asc {
+
+  transform: scaleY(-1);
+
+}
+
+.sort-and-filter {
+  display: flex;
+  justify-content: center;
+  
 }
