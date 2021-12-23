@@ -30,6 +30,9 @@ function App() {
   const [filter, setFilter] = useState();
 
   const [open, setOpen] = useState(false);
+
+  const [searchedYet, setSearchedYet] = useState(false)
+
   const handleOpen = () => setOpen(true);
 
   useEffect(() => {
@@ -97,6 +100,7 @@ function App() {
         setValue={setValue}
         setFilter={setFilter}
         setFavorites={setFavorites}
+        setSearchedYet={setSearchedYet}
       />
 
       <Navigation
@@ -122,6 +126,7 @@ function App() {
         setSelectedRepo={setSelectedRepo}
         favorites={favorites}
         handleOpen={handleOpen}
+        searchedYet={searchedYet}
       />
 
       <Popup

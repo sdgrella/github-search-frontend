@@ -11,9 +11,11 @@ function SearchBox({
   setValue,
   setFilter,
   setFavorites,
+  setSearchedYet
 }) {
   const handleSearch = () => {
     setLoading(true);
+    setSearchedYet(true)
     setOrgRepos([]);
     setFavorites([]);
     const getOrgRepos = async () => {

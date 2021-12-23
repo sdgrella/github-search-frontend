@@ -23,6 +23,7 @@ function RepoList({
   filter,
   setFavoritesSaved,
   handleOpen,
+  searchedYet
 }) {
   //Sort
   function sortAsc(a, b) {
@@ -181,7 +182,7 @@ function RepoList({
               </>
             );
           })}
-        {value === 0 && (orgRepos === undefined || orgRepos.length < 1)  && (
+        {value === 0 && (orgRepos === undefined || orgRepos.length < 1)  && searchedYet (
           <div className="no-saved-favorites">
             No repos found, please try again.
           </div>
