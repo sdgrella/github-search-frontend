@@ -181,7 +181,7 @@ function RepoList({
               </>
             );
           })}
-        {value === 0 && searchedYet === true &&
+        {value === 0 && searchedYet === true && loading === false &&
           (orgRepos === undefined || orgRepos.length < 1) && (
             <div className="no-saved-favorites">
               No repos found, please try again.
