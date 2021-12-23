@@ -48,10 +48,10 @@ function App() {
     getFavorites();
   }, []);
 
-  // useEffect(() => {
-  //   console.log("favorites: ", favorites);
-  //   console.log("favoritesSaved: ", favoritesSaved);
-  // }, [favorites, favoritesSaved]);
+  useEffect(() => {
+    console.log("favorites: ", favorites);
+    console.log("favoritesSaved: ", favoritesSaved);
+  }, [favorites, favoritesSaved]);
 
   // useEffect(() => {
   //   console.log(filter);
@@ -101,6 +101,7 @@ function App() {
         setFilter={setFilter}
         setFavorites={setFavorites}
         setSearchedYet={setSearchedYet}
+        favoritesSaved={favoritesSaved}
       />
 
       <Navigation

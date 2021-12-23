@@ -188,7 +188,7 @@ function RepoList({
             </div>
           )}
         {value === 1 &&
-          favorites &&
+          favorites && !loading &&
           favorites.map((favorite) => {
             return (
               <>

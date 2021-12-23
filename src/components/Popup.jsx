@@ -112,7 +112,7 @@ function Popup({
           )}
 
           <div className="note-box">
-            {value === 0 && (
+            {value === 0 && (selectedRepo && favoritesSaved && favoritesSaved.some(saved => saved.id === selectedRepo.id)) === false && (
               <>
                 <div className="note-input">
                   <TextField
@@ -131,10 +131,10 @@ function Popup({
                 </div>
               </>
             )}
-            {value === 1 && selectedRepo && (
+            {((value === 1 && selectedRepo) || (value === 0 && (selectedRepo && favoritesSaved && favoritesSaved.some(saved => saved.id === selectedRepo.id)) === true)) && (
               <div className="notes">
                 <div className="notes-title">Notes:</div>
-                <div className="notes-content">{selectedRepo.comment}</div>
+                <div className="notes-content">{value === 1 ? selectedRepo.comment : favoritesSaved.find(saved => saved.id === selectedRepo.id).comment}</div>
               </div>
             )}
             {value === 1 &&

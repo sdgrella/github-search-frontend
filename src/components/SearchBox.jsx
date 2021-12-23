@@ -17,7 +17,6 @@ function SearchBox({
     setLoading(true);
     setSearchedYet(true);
     setOrgRepos([]);
-    setFavorites([]);
     const getOrgRepos = async () => {
       try {
         const body = { search: search };
