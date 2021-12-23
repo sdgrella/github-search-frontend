@@ -21,7 +21,6 @@ function RepoList({
   setOrgRepos,
   setFavorites,
   filter,
-  setFavoritesSaved,
   handleOpen,
   searchedYet,
 }) {
@@ -182,9 +181,8 @@ function RepoList({
               </>
             );
           })}
-        {value === 0 &&
-          (orgRepos === undefined || orgRepos.length < 1) &&
-          searchedYet === true (
+        {value === 0 && searchedYet === true &&
+          (orgRepos === undefined || orgRepos.length < 1) && (
             <div className="no-saved-favorites">
               No repos found, please try again.
             </div>
