@@ -31,7 +31,7 @@ function Popup({
   const handleAddToFavorites = async () => {
     try {
       const res = await axios.post(
-        "https://cors-everywhere.herokuapp.com/http://githubsearchbackend-env.eba-kztnienv.us-east-2.elasticbeanstalk.com/favorites",
+        "https://cors-everywhere.herokuapp.com/http://githubsearchbackend-env.eba-kztnienv.us-east-2.elasticbeanstalk.com/add_favorite",
         repoToSave
       );
       await setFavorites([...favorites, res.data]);
