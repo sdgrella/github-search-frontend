@@ -5,8 +5,8 @@ import axios from "axios";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 
-function Popup(
-{  open,
+function Popup({
+  open,
   setOpen,
   setComment,
   value,
@@ -19,8 +19,8 @@ function Popup(
   setFilter,
   favoritesSaved,
   favorites,
-  repoToSave}
-) {
+  repoToSave,
+}) {
   const handleClose = () => {
     setOpen(false);
     setComment();
@@ -31,7 +31,7 @@ function Popup(
   const handleAddToFavorites = async () => {
     try {
       const res = await axios.post(
-        "http://localhost:5000/favorites",
+        "https://cors-everywhere.herokuapp.com/http://githubsearchbackend-env.eba-kztnienv.us-east-2.elasticbeanstalk.com/favorites",
         repoToSave
       );
       await setFavorites([...favorites, res.data]);
