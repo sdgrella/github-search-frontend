@@ -11,11 +11,11 @@ function SearchBox({
   setValue,
   setFilter,
   setFavorites,
-  setSearchedYet
+  setSearchedYet,
 }) {
   const handleSearch = () => {
     setLoading(true);
-    setSearchedYet(true)
+    setSearchedYet(true);
     setOrgRepos([]);
     setFavorites([]);
     const getOrgRepos = async () => {
@@ -23,7 +23,6 @@ function SearchBox({
         const body = { search: search };
 
         const res = await fetch(
-          
           "https://cors-everywhere.herokuapp.com/http://githubsearchbackend-env.eba-kztnienv.us-east-2.elasticbeanstalk.com/search_org",
           {
             method: "POST",
@@ -41,8 +40,6 @@ function SearchBox({
         }
         await setValue(0);
         await setFilter();
-
-        // console.log(bounds);
       } catch (err) {
         console.log(err);
       }

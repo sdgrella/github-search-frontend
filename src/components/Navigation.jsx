@@ -4,7 +4,15 @@ import BottomNavigationAction from "@mui/material/BottomNavigationAction";
 import SearchIcon from "@mui/icons-material/Search";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 
-function Navigation({ value, setValue, setFilter, favoritesSaved, setFavorites, setOrgRepos, orgReposSaved }) {
+function Navigation({
+  value,
+  setValue,
+  setFilter,
+  favoritesSaved,
+  setFavorites,
+  setOrgRepos,
+  orgReposSaved,
+}) {
   return (
     <div>
       <BottomNavigation
@@ -12,7 +20,7 @@ function Navigation({ value, setValue, setFilter, favoritesSaved, setFavorites, 
         value={value}
         onChange={(event, newValue) => {
           setValue(newValue);
-          console.log(newValue);
+          // console.log(newValue);
         }}
       >
         <BottomNavigationAction label="Search Results" icon={<SearchIcon />} />

@@ -48,19 +48,19 @@ function App() {
     getFavorites();
   }, []);
 
-  useEffect(() => {
-    console.log("favorites: ", favorites);
-    console.log("favoritesSaved: ", favoritesSaved);
-  }, [favorites, favoritesSaved]);
+  // useEffect(() => {
+  //   console.log("favorites: ", favorites);
+  //   console.log("favoritesSaved: ", favoritesSaved);
+  // }, [favorites, favoritesSaved]);
 
-  useEffect(() => {
-    console.log(filter);
-  }, [filter]);
+  // useEffect(() => {
+  //   console.log(filter);
+  // }, [filter]);
 
-  useEffect(() => {
-    console.log("orgRepos", orgRepos);
-    console.log("orgReposSaved", orgReposSaved);
-  }, [orgRepos, orgReposSaved]);
+  // useEffect(() => {
+  //   console.log("orgRepos", orgRepos);
+  //   console.log("orgReposSaved", orgReposSaved);
+  // }, [orgRepos, orgReposSaved]);
 
   useEffect(() => {
     if (selectedRepo) {
@@ -83,9 +83,9 @@ function App() {
     setRepoToSave(selectedRepo);
   }, [selectedRepo]);
 
-  useEffect(() => {
-    console.log(repoToSave);
-  }, [repoToSave]);
+  // useEffect(() => {
+  //   console.log(repoToSave);
+  // }, [repoToSave]);
 
   return (
     <div className="App">

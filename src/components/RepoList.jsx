@@ -23,7 +23,7 @@ function RepoList({
   filter,
   setFavoritesSaved,
   handleOpen,
-  searchedYet
+  searchedYet,
 }) {
   //Sort
   function sortAsc(a, b) {
@@ -182,11 +182,13 @@ function RepoList({
               </>
             );
           })}
-        {value === 0 && (orgRepos === undefined || orgRepos.length < 1)  && searchedYet (
-          <div className="no-saved-favorites">
-            No repos found, please try again.
-          </div>
-        )}
+        {value === 0 &&
+          (orgRepos === undefined || orgRepos.length < 1) &&
+          searchedYet === true (
+            <div className="no-saved-favorites">
+              No repos found, please try again.
+            </div>
+          )}
         {value === 1 &&
           favorites &&
           favorites.map((favorite) => {
