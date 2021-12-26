@@ -12,11 +12,13 @@ function SearchBox({
   setFilter,
   setFavorites,
   setSearchedYet,
+  favoritesSaved
 }) {
   const handleSearch = () => {
     setLoading(true);
     setSearchedYet(true);
     setOrgRepos([]);
+    setFavorites(favoritesSaved);
     const getOrgRepos = async () => {
       try {
         const body = { search: search };
